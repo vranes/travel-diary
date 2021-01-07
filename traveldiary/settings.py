@@ -75,11 +75,16 @@ WSGI_APPLICATION = 'traveldiary.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'travel_diary_db',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'USER': 'root'
+        #'PASSWORD': 'password'
     }
 }
 
+LOGIN_REDIRECT_URL = '/trips'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
