@@ -1,0 +1,22 @@
+{%  extends 'global/master.html' %}
+
+{% block title %}
+    Diary Entries
+{% endblock %}
+
+{%  block content %}
+    <div class="list-group">
+        {% for entry in trip.entry_set.all %}
+            <p>Traveller: {{ entry.traveller }}</p>
+            <p>Date: {{ entry.date }}</p>
+            <p>Diary Entry: {{ entry.content }}</p>
+            <p>Updated at: {{ entry.updated_at }}</p>
+            <br>
+        {% endfor %}
+        {% if perms.app.add_entry %}
+                    <a href="{% url 'app:new_entry' id=trip.id %}">
+                        <span class="badge badge-primary">Add diary entry</span>
+                    </a>
+        {% endif %}
+    </div>
+{% endblock %}

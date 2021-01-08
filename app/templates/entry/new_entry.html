@@ -1,0 +1,43 @@
+{% extends 'global/master.html' %}
+
+{% block title %}
+    New diary entry
+{% endblock %}
+
+{% block content %}
+
+    <form method="post" action="{% url 'app:new_entry' id %}">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="{{ form.date.id_for_label }}">{{ form.date.label_tag }}</label>
+            <input type="date" class="form-control" id="{{ form.date.id_for_label }}" name="{{ form.date.name }}">
+            {% if form.date.errors %}
+                <div class="alert alert-danger">
+                    <ul style="text-align: left">
+                        {% for error in form.date.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.content.id_for_label }}">{{ form.content.label_tag }}</label>
+            <input type="text" class="form-control" id="{{ form.content.id_for_label }}" name="{{ form.content.name }}">
+            {% if form.content.errors %}
+                <div class="alert alert-danger">
+                    <ul style="text-align: left">
+                        {% for error in form.content.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+
+        <input type="submit" class="btn btn-primary btn-lg" value="Add"/>
+    </form>
+
+{% endblock %}
